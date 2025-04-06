@@ -1,0 +1,4 @@
+{
+  "watch": ["webpack.config.js", "./src/data/*.js"],
+  "exec": "webpack-dev-server --mode development"
+}

@@ -1,0 +1,94 @@
+<footer class="text-base-300 bg-secondary">
+  <div
+    class="footer md:footer-horizontal container gap-12 pt-16 pb-8 text-base sm:grid-cols-12 sm:grid-rows-2 sm:gap-x-8 sm:gap-y-0 sm:pb-16 md:grid-cols-none lg:gap-12 lg:pb-6 xl:grid-rows-none xl:pt-24 xl:pb-32"
+  >
+    <aside
+      class="gap-6 sm:col-span-6 md:col-span-7 lg:col-span-5 lg:gap-8 xl:col-auto"
+    >
+      <a href="@page/index.html">
+        <img
+          src="@img/logo-light.svg"
+          alt="Logoipsum"
+          height="40"
+          width="133"
+        />
+      </a>
+      <p class="font-light">{{ global.app.about[0] }}</p>
+    </aside>
+    {% for menu in global.menu.footer %}
+      <!-- prettier-ignore-start -->
+      {% set class = "md:col-span-2 xl:col-auto sm:order-3 xl:order-none" %}
+      {% if loop.index == 2 %}
+        {% set class = "md:col-span-2 xl:col-auto sm:order-4 xl:order-none sm:justify-self-center" %}
+      {% elseif loop.index == 3 %}
+        {% set class = "md:col-span-2 xl:col-auto sm:order-5 xl:order-none sm:justify-self-end" %}
+      {% endif %}
+      <!-- prettier-ignore-end -->
+      <nav
+        class="text-base-200 {{ class }} gap-4 sm:col-span-4 md:row-span-2 md:justify-self-auto md:pt-16 lg:pt-[4.5rem] xl:pt-0"
+      >
+        <h6
+          class="footer-title mb-2 text-lg text-white normal-case opacity-100"
+        >
+          {{ menu.title }}
+        </h6>
+        {% for list in menu.lists %}
+          <a
+            href="javascript:void(0)"
+            class="link link-hover hover:text-base-100 text-base-300"
+          >
+            {{ list }}
+          </a>
+        {% endfor %}
+      </nav>
+    {% endfor %}
+    <form
+      class="gap-4 sm:order-2 sm:col-span-6 sm:pt-[3.75rem] md:col-span-7 md:pt-12 lg:col-span-5 lg:pt-0 xl:order-none xl:col-auto"
+    >
+      <h6 class="footer-title text-lg text-white normal-case opacity-100">
+        Newsletter
+      </h6>
+      <fieldset>
+        <label class="font-light">Enter your email address</label>
+        <div class="join mt-4 w-full">
+          <input
+            type="text"
+            placeholder="your@email.com"
+            class="input input-primary input-lg text-neutral join-item px-4 focus:outline-offset-0"
+          />
+          <button
+            type="button"
+            class="btn btn-primary btn-lg join-item px-4 outline-offset-0"
+          >
+            <span class="material-symbols-rounded"> send </span>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="container">
+    <div
+      class="border-base-300/25 xl:footer-horizontal footer w-full justify-items-center gap-6 border-t py-8 lg:py-12 xl:place-content-between"
+    >
+      <aside>
+        <p class="font-poppins text-xs font-light lg:text-sm">
+          {{ global.app.copyright }}
+        </p>
+      </aside>
+      <nav>
+        <div class="grid grid-flow-col gap-8">
+          {% for social in global.app.socials %}
+            <a href="javascript:void(0)">
+              <img
+                src="{{ social.icon }}"
+                alt="{{ social.name }}"
+                height="20"
+                width="20"
+              />
+            </a>
+          {% endfor %}
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>

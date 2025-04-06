@@ -1,0 +1,68 @@
+<label
+  for="drawer-toggle"
+  aria-label="close sidebar"
+  class="drawer-overlay"
+></label>
+<ul class="menu bg-base-100 min-h-full w-full px-0 pt-16 pb-5 sm:w-80 sm:pt-0">
+  <!-- Sidebar content -->
+  {% for menu in global.menu.navbar %}
+    <li>
+      {% if menu.isDropdown %}
+        <details x-data class="group/dropdown" open>
+          <summary
+            class="hover-fix focus:text-primary! focus-visible:text-primary! active:text-primary! focus:bg-base-200! focus-visible:bg-base-200! active:bg-base-200! group-open/dropdown:text-primary flex rounded-none px-5 py-0 text-base after:absolute after:right-6 after:size-2"
+          >
+            <div class="border-base-300 w-full py-5">{{ menu.title }}</div>
+          </summary>
+          <ul class="ml-0 flex flex-col gap-2 px-5 pt-2 pb-7">
+            {% if menu.id === "services" %}
+              {% for service in global.services %}
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="hover-fix group/sub focus:text-primary! focus-visible:text-primary! active:text-primary! focus:bg-base-200! focus-visible:bg-base-200! active:bg-base-200! flex gap-0 px-2 py-1.5"
+                  >
+                    <div
+                      class="mask mask-hexagon group-focus/sub:bg-primary/15 group-focus-visible/sub:bg-primary/15 group-active/sub:bg-primary/15 bg-base-200 flex h-9 w-9 items-center justify-center transition-colors duration-300"
+                    >
+                      <span
+                        class="material-symbols-rounded group-focus-visible/sub:text-primary group-focus/sub:text-primary group-active/sub:text-primary text-base! leading-none! text-slate-400 transition-colors duration-300"
+                      >
+                        {{ service.icon }}
+                      </span>
+                    </div>
+                    <span class="mr-2 ml-3">{{ service.title }}</span>
+                    <span
+                      class="material-symbols-rounded text-primary text-base! leading-none! opacity-0 transition-all duration-300 group-focus/sub:translate-x-1 group-focus/sub:opacity-100 group-focus-visible/sub:translate-x-1 group-focus-visible/sub:opacity-100 group-active/sub:translate-x-1 group-active/sub:opacity-100"
+                    >
+                      east
+                    </span>
+                  </a>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </details>
+      {% else %}
+        <a
+          href="javascript:void(0)"
+          class="hover-fix focus:text-primary! focus-visible:text-primary! active:text-primary! focus:bg-base-200! focus-visible:bg-base-200! active:bg-base-200! flex rounded-none px-5 py-0 text-base"
+        >
+          <div class="border-base-300 w-full border-t py-5">
+            {{ menu.title }}
+          </div>
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  <li class="mt-auto gap-3 px-5 pt-5">
+    <a
+      href="javascript:void(0)"
+      class="btn btn-soft bg-base-200 active:bg-base-300 text-neutral btn-block"
+      >Client Portal</a
+    >
+    <a href="javascript:void(0)" class="btn btn-block btn-primary"
+      >Contact Us</a
+    >
+  </li>
+</ul>

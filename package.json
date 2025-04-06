@@ -1,0 +1,51 @@
+{
+  "name": "wdan-cleva",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "watch": "webpack watch",
+    "build-dev": "npm run webpack-dev && npm run prettier-format",
+    "build-prod": "npm run webpack-prod && npm run prettier-format",
+    "build-bundle": "npm run webpack-dev && npm run webpack-prod && npm run prettier-format",
+    "preview": "http-server dist -p 4321 -o",
+    "webpack-dev": "webpack build --progress",
+    "webpack-prod": "cross-env NODE_ENV=production webpack build --mode=production --progress",
+    "prettier-format": "prettier --write \"dist/**/*.html\"",
+    "prettier-check": "prettier --check \"dist/**/*.html\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.8",
+    "@tailwindcss/typography": "^0.5.16",
+    "copy-webpack-plugin": "^13.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "cssnano": "^7.0.6",
+    "cssnano-preset-advanced": "^7.0.6",
+    "daisyui": "^5.0.0",
+    "glob-all": "^3.3.1",
+    "html-bundler-webpack-plugin": "^4.18.0",
+    "http-server": "^14.1.1",
+    "nodemon": "^3.1.9",
+    "nunjucks": "^3.2.4",
+    "postcss": "^8.5.1",
+    "postcss-loader": "^8.1.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-jinja-template": "^2.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "responsive-loader": "^3.1.2",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.8",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.8",
+    "swiper": "^11.2.4"
+  }
+}

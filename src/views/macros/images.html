@@ -1,0 +1,49 @@
+{# 
+  Responsive Image Macro
+  A flexible component for creating responsive images with customizable breakpoints
+  
+  Parameters:
+  - path (required): The image path/URL
+  - alt (optional): Alt text for accessibility (default: "")
+  - classes (optional): Additional CSS classes to apply (default: "")
+  - breakpoints (optional): Object containing size values for different breakpoints (default: {})
+      Available breakpoints: "2xl", "xl", "lg", "md", "sm"
+      Example: { "2xl": "50vw", "md": "90vw" }
+  - extraProps (optional): Object of additional HTML attributes to add to the img tag
+#}
+
+{% macro responsiveImage(path, alt = "", classes = "", breakpoints = {}, extraProps = {}) %}
+  <!-- prettier-ignore-start -->
+  {# Set default breakpoint values if not provided #}
+  {% set bp = {
+    "2xl": breakpoints["2xl"] or "100vw",
+    "xl": breakpoints["xl"] or "100vw",
+    "lg": breakpoints["lg"] or "100vw",
+    "md": breakpoints["md"] or "100vw",
+    "sm": breakpoints["sm"] or "100vw"
+  } %}
+
+  {# Construct the sizes attribute for responsive images #}
+  {% set sizes = "(min-width: 1536px) " ~ bp["2xl"] ~ ", " ~
+                  "(min-width: 1280px) " ~ bp["xl"] ~ ", " ~
+                  "(min-width: 1024px) " ~ bp["lg"] ~ ", " ~
+                  "(min-width: 768px) " ~ bp["md"] ~ ", " ~
+                  "(min-width: 640px) " ~ bp["sm"] ~ ", 100vw" %}
+  <!-- prettier-ignore-end -->
+
+  {# Process any extra HTML attributes #}
+  {% set attrs = "" %}
+  {% for key, value in extraProps %}
+    {% set attrs = attrs ~ key ~ '="' ~ value ~ '" ' %}
+  {% endfor %}
+
+  {# Render the responsive image element #}
+  <img
+    src="{{ path }}?size=360"
+    srcset="{{ path }}"
+    sizes="{{ sizes }}"
+    alt="{{ alt }}"
+    class="{{ classes }}"
+    {{ attrs | safe }}
+  />
+{% endmacro %}

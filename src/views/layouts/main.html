@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        {{ global.app.name ~ " - " ~ global.app.tagline }}
+      {% endblock %}
+    </title>
+    <link rel="shortcut icon" href="@img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    {% block headThirdParty %}{% endblock %}
+    <link rel="stylesheet" href="@style/main.css" />
+    <script defer src="@script/main.js"></script>
+    {% block headCustom %}{% endblock %}
+    {% if env == "production" %}
+      <script defer src="assets/js/vendor/alpinejs/cdn.min.js"></script>
+    {% else %}
+      <script defer src="assets/js/vendor/alpinejs/cdn.js"></script>
+    {% endif %}
+  </head>
+  <body>
+    <div class="drawer drawer-end group">
+      <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <!-- Navbar -->
+        {% include "partials/navbar.html" %}
+
+        <!-- Page content -->
+        <div class="overflow-x-hidden">{% block content %}{% endblock %}</div>
+
+        <!-- Footer -->
+        {% include "partials/footer.html" %}
+      </div>
+      <div class="drawer-side z-20">
+        <!-- Sidenav  -->
+        {% include "partials/sidenav.html" %}
+      </div>
+    </div>
+    <button
+      class="btn btn-lg btn-circle bg-curious-blue sm:btn-xl shadow-curious-blue/50 fixed right-5 bottom-5 z-1 shadow-lg sm:right-8 sm:bottom-8 xl:bottom-12 2xl:right-12"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="sm:size-8"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M12 1.11523C6.201 1.11523 1.5 5.81623 1.5 11.6152C1.5 15.7012 3.837 19.2442 7.245 20.9782C7.707 21.2212 8.187 21.4312 8.688 21.6022L8.193 23.5072C8.133 23.7412 8.355 23.9482 8.583 23.8702L15.477 21.5422C15.915 21.3832 16.341 21.1942 16.749 20.9812C20.16 19.2472 22.5 15.7042 22.5 11.6152C22.5 5.81623 17.799 1.11523 12 1.11523ZM18.333 16.4362C18.009 17.2312 17.076 18.7522 14.688 18.7522C12.291 18.7522 11.361 17.2222 11.04 16.4302C10.956 16.2262 11.19 16.0282 11.454 16.0762C13.74 16.4872 15.885 16.4662 17.913 16.0852C18.18 16.0312 18.417 16.2292 18.333 16.4362Z"
+          fill="white"
+        />
+      </svg>
+    </button>
+  </body>
+</html>

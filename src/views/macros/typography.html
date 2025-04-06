@@ -1,0 +1,18 @@
+{% macro gradientText(text) %}
+  {%- set start = text.indexOf('[') -%}
+  {%- set end = text.indexOf(']') -%}
+  {%- if start != -1 and end != -1 -%}
+    {%- set before = text.slice(0, start) -%}
+    {%- set gradientWord = text.slice(start + 1, end) -%}
+    {%- set after = text.slice(end + 1) -%}
+    {{ before | safe }}
+    <span
+      class="from-primary to-accent bg-gradient-to-r bg-clip-text text-transparent"
+    >
+      {{ gradientWord }}
+    </span>
+    {{ after | safe }}
+  {%- else -%}
+    {{ text }}
+  {%- endif -%}
+{% endmacro %}

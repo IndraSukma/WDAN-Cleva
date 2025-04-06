@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  --font-poppins:
+    Poppins, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    Rubik, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-*: initial;
+  --color-purple-heart: oklch(55.69% 0.2155 306.28);
+  --color-heliotrope: oklch(67.99% 0.2031 321.34);
+  --color-dark-blue: oklch(47.81% 0.2442 289.42);
+  --color-curious-blue: oklch(64.62% 0.1228 244.06);
+  --color-jordy-blue: oklch(80.64% 0.0903 249);
+  --color-padua: oklch(86.55% 0.0696 166.76);
+  --color-cherry-pie: oklch(24.04% 0.135 289.15);
+
+  --color-slate-50: oklch(98% 0.003 247.858);
+  --color-slate-100: oklch(96% 0.007 247.896);
+  --color-slate-200: oklch(92% 0.013 255.508);
+  --color-slate-300: oklch(86% 0.022 252.894);
+  --color-slate-400: oklch(70% 0.04 256.788);
+  --color-slate-500: oklch(55% 0.046 257.417);
+  --color-slate-600: oklch(44% 0.043 257.281);
+  --color-slate-700: oklch(37% 0.044 257.287);
+  --color-slate-800: oklch(27% 0.041 260.031);
+  --color-slate-900: oklch(20% 0.042 265.755);
+  --color-slate-950: oklch(12% 0.042 264.695);
+
+  --color-black: #000;
+  --color-white: #fff;
+
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "cleva";
+  default: true;
+  prefersdark: true;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(96% 0.007 247.896);
+  --color-base-300: oklch(92% 0.013 255.508);
+  --color-base-content: oklch(44% 0.043 257.281);
+  --color-primary: oklch(47.81% 0.2442 289.42);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(24.04% 0.135 289.15);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(67.99% 0.2031 321.34);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(12% 0.042 264.695);
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(54% 0.245 262.881);
+  --color-info-content: oklch(100% 0 0);
+  --color-success: oklch(62% 0.194 149.214);
+  --color-success-content: oklch(100% 0 0);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(12% 0.042 264.695);
+  --color-error: oklch(57% 0.245 27.325);
+  --color-error-content: oklch(100% 0 0);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 0px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@utility material-symbols-rounded {
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 600,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+@utility container {
+  @apply mx-auto px-5 sm:max-w-[37.5rem] sm:px-0 md:max-w-[45rem] lg:max-w-[60rem] xl:max-w-[71.25rem];
+}
+
+@utility btn {
+  --btn-bg: var(--btn-color, var(--color-base-100));
+  --btn-fg: var(--color-neutral);
+  font-family: var(--font-poppins);
+  outline-color: var(--btn-color, var(--color-neutral));
+}
+
+@utility btn-soft {
+  &:not(
+      .btn-active,
+      :hover,
+      :active:focus,
+      :focus-visible,
+      :disabled,
+      [disabled],
+      .btn-disabled
+    ) {
+    --btn-bg: color-mix(
+      in oklab,
+      var(--btn-color, var(--color-base-content)) 15%,
+      var(--color-base-100)
+    );
+    --btn-border: color-mix(
+      in oklab,
+      var(--btn-color, var(--color-base-content)) 15%,
+      var(--color-base-100)
+    );
+  }
+}
+
+@utility btn-lg {
+  font-size: 1rem;
+}
+
+@utility input-lg {
+  font-size: 1rem;
+}
+
+@utility badge {
+  font-family: var(--font-poppins);
+  color: var(--color-neutral);
+}
+
+@utility menu {
+  font-family: var(--font-poppins);
+}
+
+@utility scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+@utility hover-fix {
+  &:hover {
+    background-color: var(--color-base-200);
+    color: var(--color-primary);
+    & .mask-hexagon {
+      background-color: color-mix(
+        in oklab,
+        var(--color-primary) 15%,
+        transparent
+      );
+    }
+
+    & .mask > .material-symbols-rounded {
+      color: var(--color-primary);
+    }
+
+    & > .material-symbols-rounded {
+      --tw-translate-x: calc(var(--spacing) * 1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+      opacity: 100%;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins);
+    color: var(--color-neutral);
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+}

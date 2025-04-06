@@ -1,0 +1,117 @@
+<header
+  x-data="navbar"
+  :class="navbarAtTop || 'bg-base-100 shadow-lg shadow-black/5'"
+  class="has-open:bg-base-100 group-has-[#drawer-toggle:checked]:bg-base-100 fixed z-30 w-full transition-colors duration-300 before:absolute before:top-16 before:block before:transition-colors before:duration-300 has-open:before:h-screen has-open:before:w-screen has-open:before:bg-black/15 sm:z-10 md:before:top-[4.5rem]"
+>
+  <div class="container">
+    <div class="navbar relative px-0 py-3 md:py-4">
+      <div class="flex flex-1 items-center gap-7">
+        <a href="@page/index.html">
+          <img
+            src="@img/logo-dark.svg"
+            alt="Logoipsum"
+            height="28"
+            width="93"
+          />
+        </a>
+        <div class="hidden flex-none lg:block">
+          <ul class="menu menu-horizontal gap-1 p-0 font-medium">
+            {% for menu in global.menu.navbar %}
+              <li>
+                {% if menu.isDropdown %}
+                  <div
+                    x-data="dropdown"
+                    class="group/dropdown p-0 hover:bg-transparent focus-visible:bg-transparent! active:bg-transparent! active:text-inherit!"
+                  >
+                    <div
+                      x-bind="toggle"
+                      role="button"
+                      tabindex="0"
+                      class="hover:text-primary focus-visible:text-primary! active:text-primary! group-open/dropdown:text-primary flex items-end gap-1 rounded-lg py-1.5 pr-1.5 pl-3 hover:bg-transparent focus-visible:bg-transparent! focus-visible:outline-offset-2 active:bg-transparent!"
+                    >
+                      {{ menu.title }}
+                      <span
+                        class="material-symbols-rounded text-xl/5! transition-transform duration-200 group-open/dropdown:rotate-180"
+                      >
+                        keyboard_arrow_down
+                      </span>
+                    </div>
+                    <ul
+                      x-cloak
+                      x-bind="menu"
+                      x-transition:enter-start="opacity-0 translate-y-2"
+                      x-transition:enter-end="opacity-100 translate-y-0"
+                      x-transition:leave-start="opacity-100 translate-y-0"
+                      x-transition:leave-end="opacity-0 translate-y-2"
+                      tabindex="0"
+                      class="bg-base-100 absolute top-0 left-0 m-0 mt-10 flex h-48 w-xl flex-col flex-wrap gap-y-2 rounded-2xl px-2 py-4 drop-shadow-2xl transition-all duration-300"
+                    >
+                      {% if menu.id === "services" %}
+                        {% for service in global.services %}
+                          <li class="w-1/2 px-2">
+                            <a
+                              href="javascript:void(0)"
+                              class="hover:text-primary group/sub hover:bg-base-200 focus-visible:text-primary! focus-visible:bg-base-200! focus:text-primary! focus:bg-base-200! active:text-primary! active:bg-base-200! flex gap-0 px-2 py-1.5 transition-colors duration-300"
+                            >
+                              <div
+                                class="mask mask-hexagon group-hover/sub:bg-primary/15 group-focus-visible/sub:bg-primary/15 group-focus/sub:bg-primary/15 group-active/sub:bg-primary/15 bg-base-200 flex h-9 w-9 items-center justify-center transition-colors duration-300"
+                              >
+                                <span
+                                  class="material-symbols-rounded group-hover/sub:text-primary group-focus-visible/sub:text-primary group-focus/sub:text-primary group-active/sub:text-primary text-base! leading-none! text-slate-400 transition-colors duration-300"
+                                >
+                                  {{ service.icon }}
+                                </span>
+                              </div>
+                              <span class="mr-2 ml-3">{{ service.title }}</span>
+                              <span
+                                class="material-symbols-rounded text-primary text-base! leading-none! opacity-0 transition-all duration-300 group-hover/sub:translate-x-1 group-hover/sub:opacity-100 group-focus/sub:translate-x-1 group-focus/sub:opacity-100 group-focus-visible/sub:translate-x-1 group-focus-visible/sub:opacity-100 group-active/sub:translate-x-1 group-active/sub:opacity-100"
+                              >
+                                east
+                              </span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      {% endif %}
+                    </ul>
+                  </div>
+                {% else %}
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-primary focus-visible:text-primary! active:text-primary! hover:bg-transparent focus-visible:bg-transparent! focus-visible:outline-2 focus-visible:outline-solid! active:bg-transparent!"
+                    >{{ menu.title }}</a
+                  >
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-none gap-2 pr-12 lg:pr-0">
+        <a href="javascript:void(0)" class="btn btn-ghost hidden lg:flex"
+          >Client Portal</a
+        >
+        <a href="javascript:void(0)" class="btn btn-primary hidden sm:flex"
+          >Contact Us</a
+        >
+      </div>
+      <div class="absolute -right-2 flex-none lg:hidden">
+        <label
+          for="drawer-toggle"
+          aria-label="toggle sidebar"
+          class="btn btn-circle btn-ghost swap swap-rotate"
+        >
+          <span
+            class="material-symbols-rounded swap-off group-has-[#drawer-toggle:checked]:-rotate-45 group-has-[#drawer-toggle:checked]:opacity-0"
+          >
+            menu
+          </span>
+          <span
+            class="material-symbols-rounded swap-on group-has-[#drawer-toggle:checked]:rotate-0 group-has-[#drawer-toggle:checked]:opacity-100"
+          >
+            close
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+</header>
