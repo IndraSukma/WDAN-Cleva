@@ -1,0 +1,29 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.tabCompletion": "on",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.snippetSuggestions": "inline",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.scss": "tailwindcss"
+  },
+  "prettier.printWidth": 200,
+  "prettier.semi": false,
+  "prettier.bracketSameLine": true,
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "scss": "css"
+  },
+  "tailwind-fold.foldStyle": "QUOTES",
+  "tailwind-fold.unfoldIfLineSelected": true,
+  "tailwind-fold.foldLengthThreshold": 80
+}
