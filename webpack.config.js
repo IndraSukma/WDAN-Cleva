@@ -63,54 +63,6 @@ module.exports = (_, argv) => {
     const ext = filename.substring(filename.indexOf(".") + 1);
     return formatFilename(ext, absoluteFilename);
   };
-  const plugins = [
-    new HtmlBundlerPlugin({
-      entry,
-      router: true,
-      sources: [
-        {
-          tag: "script",
-          filter: ({ value }) => !value.startsWith("assets/js/vendor"),
-        },
-      ],
-      js: {
-        filename: (pathData) => formatFilename("js", pathData.filename),
-      },
-      css: {
-        filename: (pathData) => formatFilename("css", pathData.filename),
-      },
-      data: { env: argv.mode, global: dataGlobal },
-      preprocessor: "nunjucks",
-      preprocessorOptions: {
-        views: [`src${sep}views${sep}`],
-        trimBlocks: true,
-        lstripBlocks: true,
-      },
-      minify: {
-        collapseWhitespace: false,
-        collapseBooleanAttributes: true,
-        removeEmptyAttributes: true,
-        removeComments: true,
-      },
-    }),
-  ];
-
-  if (!isProd) {
-    plugins.push(
-      new CopyPlugin({
-        patterns: [
-          {
-            from: `node_modules/swiper/swiper-bundle*.{js,js.map}`,
-            to: copyDestination,
-          },
-          {
-            from: `node_modules/alpinejs/dist/cdn*.js`,
-            to: copyDestination,
-          },
-        ],
-      }),
-    );
-  }
 
   return {
     mode: "development",
@@ -145,6 +97,51 @@ module.exports = (_, argv) => {
         "@node": resolve(__dirname, "node_modules"),
       },
     },
+    plugins: [
+      new HtmlBundlerPlugin({
+        entry,
+        router: true,
+        sources: [
+          {
+            tag: "script",
+            filter: ({ value }) => !value.startsWith("assets/js/vendor"),
+          },
+        ],
+        js: {
+          filename: (pathData) => formatFilename("js", pathData.filename),
+        },
+        css: {
+          filename: (pathData) => formatFilename("css", pathData.filename),
+        },
+        data: { env: argv.mode, global: dataGlobal },
+        preprocessor: "nunjucks",
+        preprocessorOptions: {
+          views: [`src${sep}views${sep}`],
+          trimBlocks: true,
+          lstripBlocks: true,
+        },
+        minify: {
+          collapseWhitespace: false,
+          collapseBooleanAttributes: true,
+          removeEmptyAttributes: true,
+          removeComments: true,
+        },
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: `node_modules/swiper/swiper-bundle*.{js,js.map}`,
+            to: copyDestination,
+            info: { minimized: true },
+          },
+          {
+            from: `node_modules/alpinejs/dist/cdn*.js`,
+            to: copyDestination,
+            info: { minimized: true },
+          },
+        ],
+      }),
+    ],
     module: {
       rules: [
         {
@@ -177,12 +174,7 @@ module.exports = (_, argv) => {
         },
         {
           test: /\.(svg|ico)$/,
-          type: "asset",
-          parser: {
-            dataUrlCondition: {
-              maxSize: 4096,
-            },
-          },
+          type: "asset/resource",
           generator: {
             filename: (pathData) => {
               const relativePath = posix.normalize(
@@ -201,6 +193,5 @@ module.exports = (_, argv) => {
       ],
     },
     performance: { hints: false },
-    plugins,
   };
 };
