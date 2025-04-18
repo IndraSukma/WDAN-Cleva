@@ -99,17 +99,12 @@ npm run build-prod
 
 ## 💻 Recommended VSCode Setup
 
-To ensure consistent formatting and development experience, this project includes a `.code-workspace` file:
+This project includes a `.vscode` folder containing:
 
-### 🗂️ `.code-workspace` file
+- `settings.json` – Editor configuration for formatting, indentation, and file behavior tailored to the project (e.g. Prettier, Tailwind class sorting).
+- `extensions.json` – Suggested extensions to improve the development experience with syntax highlighting, IntelliSense, and formatting.
 
-The included `WDAN-Cleva.code-workspace` contains:
-
-- Project-specific VSCode settings
-- Recommended extensions
-- Defined folder structure
-
-This helps development team open the project in a pre-configured environment with all the tools needed for efficient work.
+When you open the project in VSCode, it will prompt you to install the recommended extensions and automatically apply the workspace settings, ensuring consistency across different machines and developers.
 
 ### 🔧 Recommended Extensions
 
@@ -121,8 +116,6 @@ These extensions are recommended in the workspace:
 - [Alpine.js IntelliSense](https://marketplace.visualstudio.com/items/?itemName=adrianwilczynski.alpine-js-intellisense) – Autocompletion and suggestions for Alpine.js attributes
 - [Alpine.js Syntax Highlight](https://marketplace.visualstudio.com/items/?itemName=sperovita.alpinejs-syntax-highlight) – Syntax highlighting for Alpine.js directives
 - [Better Nunjucks](https://marketplace.visualstudio.com/items/?itemName=ginfuru.better-nunjucks) – Enhanced syntax highlighting and support for Nunjucks templates
-
-You’ll be prompted to install these when opening the project in VSCode if you don’t already have them installed.
 
 ---
 
