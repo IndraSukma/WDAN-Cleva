@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0 (2025-04-18)
+## 1.1.0 (2025-04-21)
 
 ### Added
 
@@ -14,6 +14,7 @@
 - Updated npm packages
 - Updated compiled production files
 - Manually embed specific SVGs by adding `?embed` to the source path in the HTML template
+- Updated project structure on docs
 
 ### Fixed
 

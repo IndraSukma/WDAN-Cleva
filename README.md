@@ -44,10 +44,11 @@ A responsive, modern, and component-based landing page built for **Cleva**, a UK
 
 ```
 WDAN-Cleva/
+├── .vscode/                     # VS Code settings and extension recommendations
 ├── docs/                        # GitHub Pages deployment (optional for demo/preview)
 ├── src/
 │   ├── assets/                  # Static assets like images, icons, fonts, css, js, etc.
-│   ├── data/                    # JS files, follows structure of `pages/` (e.g., blog-tech.js for blog/tech.html)
+│   ├── data/                    # JS files, follows structure of `pages/` (e.g., blog-tag-tech.js for blog/tag/tech.html)
 │   │   ├── _global.js           # Global data accessible in all templates
 │   │   └── index.js             # Page-specific data for index.html
 │   └── views/
@@ -62,8 +63,7 @@ WDAN-Cleva/
 ├── package.json                 # Project metadata, dependencies, and scripts
 ├── postcss.config.js            # PostCSS plugin config for Tailwind CSS processing
 ├── README.md                    # Project overview and usage guide
-├── webpack.config.js            # Webpack build configuration
-└── WDAN-Cleva.code-workspace    # VS Code workspace settings and extension recommendations
+└── webpack.config.js            # Webpack build configuration
 ```
 
 ---
